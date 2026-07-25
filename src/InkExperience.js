@@ -111,7 +111,7 @@ void main() {
 }`;
 
 class BufferSim {
-  constructor(renderer, size, shader) {
+  constructor(renderer, size, shader, textureType) {
     this.renderer = renderer;
     this.shader = shader;
     this.scene = new THREE.Scene();
@@ -121,7 +121,7 @@ class BufferSim {
       minFilter: THREE.LinearFilter,
       magFilter: THREE.LinearFilter,
       format: THREE.RGBAFormat,
-      type: THREE.FloatType,
+      type: textureType,
       stencilBuffer: false,
       depthBuffer: false
     });
@@ -249,8 +249,15 @@ export class InkExperience {
       vertexShader: simulationVertexShader,
       fragmentShader: simulationFragmentShader
     });
-    const size = Math.min(innerWidth, innerHeight) < 700 ? 768 : 1024;
-    this.bufferSim = new BufferSim(this.renderer, size, this.floorSimMat);
+    const baseline = new URLSearchParams(location.search).get('baseline') === '1';
+    const compact = Math.min(innerWidth, innerHeight) < 700;
+    const size = compact ? 768 : 1024;
+    // The original FloatType target can be incomplete on mobile Safari/WebViews.
+    // Product mode only stores clamped 0–1 ink, so UnsignedByte is a faithful,
+    // broadly renderable target. Baseline keeps the original float buffer.
+    const textureType = baseline ? THREE.FloatType : THREE.UnsignedByteType;
+    this.bufferSim = new BufferSim(this.renderer, size, this.floorSimMat, textureType);
+    this.canvas.dataset.simType = textureType === THREE.FloatType ? 'float' : 'ubyte';
   }
 
   createHero() {
