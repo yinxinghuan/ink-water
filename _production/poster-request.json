@@ -1,0 +1,9 @@
+{
+  "endpoint": "https://chat.aiwaves.tech/aigram/api/gen-image",
+  "origin": "https://aigram.app",
+  "selected_source": "https://cdn.aiwaves.tech/prod/telegram/avatar/0/1784979607068476.webp",
+  "selected_source_file": "poster-source.webp",
+  "selection_note": "平台 transit 生成。选择第一版更具方向性的青色水墨流，裁去白框并在上方安全区排标题；画面没有手、设备外框或游戏 UI。",
+  "prompt": "Square premium surreal editorial poster, an immense still black water surface seen in deep perspective, one slender ivory conical ink stylus hovering just above the water at the center, from its tip a single breathtaking current of luminous cyan ink blooms and branches naturally through water with restrained accents of violet and coral, realistic fluid diffusion, soft fog, exquisite reflections, tactile cinematic photography, elegant minimal composition, one strong subject, mysterious and contemplative, dark upper 25 percent reserved for title, no hands, no fingers, no people, no phone, no device frame, no interface, no logo, no text, no letters, no border, no collage, 1024x1024"
+}
+
